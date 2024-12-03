@@ -6,15 +6,40 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 14:08:25 by maballet          #+#    #+#             */
-/*   Updated: 2024/12/03 11:53:41 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2024/12/03 16:44:29 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-static int	ft_putchar(char c);
-static int	ft_check(va_list ap, int *i, const char *s);
-static int	ft_hexa_ptr(unsigned long n);
+int	ft_check(va_list ap, int *i, const char *s)
+{
+	int	len;
+
+	len = 0;
+	if (s[*i + 1] == 'c')
+		len += ft_putchar(va_arg(ap, int));
+	else if (s[*i + 1] == 's')
+		len += ft_putstr(va_arg(ap, char *));
+	else if (s[*i + 1] == 'p')
+		len += ft_putptr(va_arg(ap, void *));
+	else if (s[*i + 1] == 'd' || s[*i + 1] == 'i')
+		len += ft_putnbr(va_arg(ap, int));
+	else if (s[*i + 1] == 'u')
+		len += ft_putnbrbase(va_arg(ap, unsigned int), "0123456789", 10);
+	else if (s[*i + 1] == 'x')
+		len += ft_putnbrbase(va_arg(ap, unsigned int), "0123456789abcdef", 16);
+	else if (s[*i + 1] == 'X')
+		len += ft_putnbrbase(va_arg(ap, unsigned int), "0123456789ABCDEF", 16);
+	else if (s[*i + 1] == '%')
+		len += ft_putchar('%');
+	else
+	{
+		len += ft_putchar(s[*i]);
+		len += ft_putchar(s[*i + 1]);
+	}
+	return (len);
+}
 
 int	ft_printf(const char *s, ...)
 {
@@ -44,73 +69,13 @@ int	ft_printf(const char *s, ...)
 	return (len);
 }
 
-static int	ft_ptr(void *ptr)
-{
-	unsigned long	adr;
-	int				len;
-
-	len = 0;
-	adr = (unsigned long)ptr;
-	write(1, "0x", 2);
-	len += 2;
-	len += ft_hexa_ptr(adr);
-	return (len);
-}
-
-static int	ft_hexa_ptr(unsigned long n)
-{
-	int		len;
-	char	c;
-
-	len = 0;
-	if (n >= 16)
-		len += ft_hexa_ptr(n / 16);
-	c = "0123456789abcdef"[n % 16];
-	write(1, &c, 1);
-	len++;
-	return (len);
-}
-
-static int	ft_putchar(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-static int	ft_check(va_list ap, int *i, const char *s)
-{
-	int	len;
-
-	len = 0;
-	if (s[*i + 1] == 'c')
-		len += ft_putchar(va_arg(ap, int));
-	else if (s[*i + 1] == 's')
-		len += ft_putstr(va_arg(ap, char *));
-	else if (s[*i + 1] == 'p')
-		ft_ptr(va_arg(ap, void *));
-	else if (s[*i + 1] == 'd' || s[*i + 1] == 'i')
-		len += ft_putnbr(va_arg(ap, int));
-	else if (s[*i + 1] == 'u')
-		ft_unsigned(va_arg(ap, unsigned int));
-	else if (s[*i + 1] == 'x')
-		len += ft_hexa_low(va_arg(ap, int));
-	else if (s[*i + 1] == 'X')
-		len += ft_hexa_up(va_arg(ap, int));
-	else if (s[*i + 1] == '%')
-		len = len;
-	else
-		len += ft_putchar(s[*i]);
-		len += ft_putchar(s[*i + 1]);
-	return (len);
-}
-
 // int main(void)
 // {
 // 	int	a;
 // 	int	b;
 
-// 	a = printf("%%%%%%", 6);
-// 	b = ft_printf("%%%%%%", 6);
+// 	a = printf("%p %s\n", NULL, NULL);
+// 	b = ft_printf("%p %s\n", NULL, NULL);
 // 	write(1, "\n", 1);
 // 	printf("\na = %d\nb = %d", a, b);
 // 	return (0);

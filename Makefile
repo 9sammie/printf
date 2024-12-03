@@ -3,7 +3,7 @@
 #####                   files                   #####
 #####################################################
 
-SRC = ft_printf.c usefull.c
+SRC = ft_printf.c useful.c ft_strlen.c
 
 #####################################################
 #####                 variables                 #####
@@ -11,7 +11,7 @@ SRC = ft_printf.c usefull.c
 
 NAME = libftprintf.a
 OBJ = $(SRC:.c=.o)
-HEADER = libftprintf.h
+HEADER = ft_printf.h
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
@@ -29,7 +29,7 @@ $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
 .PHONY: clean
-clean: $(OBJ)
+clean:
 	rm -f $(OBJ)
 
 .PHONY: fclean
