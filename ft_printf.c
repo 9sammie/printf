@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 14:08:25 by maballet          #+#    #+#             */
-/*   Updated: 2024/12/09 09:57:46 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2024/12/09 11:16:07 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,3 @@ int	ft_printf(const char *s, ...)
 	va_end(ap);
 	return (len);
 }
-
