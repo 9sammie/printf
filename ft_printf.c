@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 14:08:25 by maballet          #+#    #+#             */
-/*   Updated: 2024/12/03 16:44:29 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2024/12/09 09:57:46 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,3 @@ int	ft_printf(const char *s, ...)
 	return (len);
 }
 
-// int main(void)
-// {
-// 	int	a;
-// 	int	b;
-
-// 	a = printf("%p %s\n", NULL, NULL);
-// 	b = ft_printf("%p %s\n", NULL, NULL);
-// 	write(1, "\n", 1);
-// 	printf("\na = %d\nb = %d", a, b);
-// 	return (0);
-// }
