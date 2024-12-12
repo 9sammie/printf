@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 14:34:26 by maballet          #+#    #+#             */
-/*   Updated: 2024/12/09 15:30:41 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2024/12/12 13:54:00 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int		ft_putptr(void *ptr);
 int		ft_putchar(char c);
 int		ft_strlen(char *s);
 char	*ft_strchr(const char *s, int c);
+int		ft_check(va_list ap, int *i, const char *s);
 
 #endif
