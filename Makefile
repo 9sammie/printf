@@ -3,7 +3,7 @@
 #####                   files                   #####
 #####################################################
 
-SRC = ft_printf.c useful.c ft_strlen.c
+SRC = ft_printf.c ft_useful_01.c ft_useful_02.c
 
 #####################################################
 #####                 variables                 #####
